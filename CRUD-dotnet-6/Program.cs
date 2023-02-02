@@ -6,8 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<PeronDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
+//builder.Services.AddDbContext<PeronDbContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnection")));
+builder.Services.AddDbContext<PeronDbContext>(opt =>
+        opt.UseNpgsql(builder.Configuration.GetConnectionString("PostgreConnection")));
 
 var app = builder.Build();
 
